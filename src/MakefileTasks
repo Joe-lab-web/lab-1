@@ -59,7 +59,7 @@ tasks2:
 
 # task 3
 
-.PHONY: simd o3 simd-o3 grade3 tasks3
+.PHONY: simd o3 simd-o3 o2 simd-o2 grade3 tasks3
 
 simd: $(MS)
 	@$(MS) $(IN) 13 201 1
@@ -70,6 +70,12 @@ o3: $(MO)
 simd-o3: $(MO)
 	@$(MO) $(IN) 13 201 1
 
+o2: $(M2)
+	@$(M2) $(IN) 1 1 1
+
+simd-o2: $(M2)
+	@$(M2) $(IN) 13 201 1
+
 
 grade3: simd
 
@@ -79,6 +85,8 @@ tasks3:
 	@$(MAKE) simd
 	@$(MAKE) o3
 	@$(MAKE) simd-o3
+	@$(MAKE) o2
+	@$(MAKE) simd-o2
 
 # useful all-in-one target
 

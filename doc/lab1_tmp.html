@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>lab1.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="matrix-multiplication-a-cpus-perspective">Matrix Multiplication: A CPU's Perspective</h1>
+<h2 id="introduction">Introduction</h2>
+<p>Matrix multiplication has always been a central task in many applications, from recently widely-recognized neural networks to more traditional scientific computing.</p>
+<p>Matrix multiplication has a naive 3-level nested <code>for</code> loop implementation, namely</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i != m; i++) {
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> j = <span class="hljs-number">0</span>; j != n; j++) {
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">0</span>; l != k; l++) {
+      Z[i][j] += X[i][l] * Y[l][j];
+    }
+  }
+}
+</div></code></pre>
+<p>Even though we have more advanced algorithms that achieve lower complexity than this simple form, we can already achieve a 5X to 10X speedup with only simple code transforms. This is because we are running on a real-world CPU rather than an ideal Turing Machine, namely a real-world CPU with caches and advanced instructions like SIMD.</p>
+<p>In this lab, we will explore the large design space offered by a real-world CPU and try to get a sense of various system-level optimizations.</p>
+<h2 id="background">Background</h2>
+<h3 id="pointer">Pointer</h3>
+<p>Pointer is a powerful yet dangerous feature of C. Many may find pointer confusing and hard to understand. But from the assembly's perspective, the pointer is very natural.</p>
+<pre class="hljs"><code><div><span class="hljs-type">int</span> a = <span class="hljs-number">0</span>;
+<span class="hljs-type">int</span> *b = &amp;a;
+</div></code></pre>
+<p>For example, in the above code snippet, we have defined <code>a</code> as an <code>int</code> and <code>b</code> as a pointer to <code>int</code>. If we want to add 1 to <code>a</code>, how can we do so in assembly?</p>
+<p>For <code>a += 1</code>, we may have the following assembly generated.</p>
+<pre class="hljs"><code><div>ld x1, #address of a
+addi x1, x1, 1
+st x1, #address of a
+</div></code></pre>
+<p>But for <code>*b += 1</code>, we may have this form</p>
+<pre class="hljs"><code><div>ld x1, #address of b
+ld x2, x1 ; the content of x1 is now the address of a
+addi x2, x2, 1
+st x2, x1
+</div></code></pre>
+<p>In the second assembly snippet, the value of register <code>x1</code> is the address of <code>a</code> and the value of <code>b</code>, then <code>ld x2, x1</code> dereferences the pointer (namely <code>*b</code>) and load the value of <code>a</code> to register <code>x2</code>. We can see that instead of hard-encoding the address of <code>a</code> in assembly code, we can use register <code>x1</code> to store the address of <code>a</code>, which is far more flexible.</p>
+<h3 id="array">Array</h3>
+<p>Subscripting an array is just syntactic sugar for dereferencing a pointer, namely you can always interpret <code>a[i]</code> as <code>*(a+i)</code>.</p>
+<p>A side note though, an array is not always equivalent to a pointer (e.g. the <code>sizeof</code> operator). For further details, you can refer to Chapters 9 and 10 of <em>Expert C Programming: Deep C Secrets</em>.</p>
+<p>Now let's talk about pointer arithmetic. When you add an integer to a pointer, what happens? For example, if we have an <code>int *p</code> where the address stored in <code>p</code> is <code>0x800</code>, then what's the result of <code>p + 1</code>? You may answer <code>0x801</code>, which can be true, but most of the time it is false. This depends on the definition of <code>int</code>. If <code>sizeof(int) == 1</code>, namely int takes one byte, then the result is <code>0x801</code>. But most of the time <code>sizeof(int)</code> equals 4 or 8, so <code>p + 1</code> should be <code>0x804</code> or <code>0x808</code>.</p>
+<p>Then let's talk about multi-dimensional arrays. Suppose we have an <code>int a[7][8]</code>, by the syntactic sugar introduced above, <code>a[4][6]</code> is equivalent to <code>*(*(a+4)+6)</code>, and by the pointer arithmetic above, it is equivalent to loading the content at address <code>0x800 + 4 * sizeof(int[8]) + 6 * sizeof(int)</code>.</p>
+<h3 id="cacheline">Cacheline</h3>
+<p>For simplicity of implementation and exploitation of space locality, cache is usually implemented using cachelines, namely all contents around one address are cached instead of just caching one content for one access to one address.</p>
+<p>For example, suppose your cacheline is 8B, then if you access <code>0x800</code>, <code>0x806</code> is also cached. This is especially friendly to arrays. Namely if you have accessed <code>a[i]</code>, <code>a[i+1]</code> is highly possible to be also cached and the load instruction to <code>a[i+1]</code> can be extremely fast.</p>
+<p>For multi-dimensional array, if you have accessed <code>a[i][j]</code>, then access to <code>a[i][j+1]</code> is highly possible to be fast, but access to <code>a[i+1][j]</code> can be slow because it is not cached (you can calculate the address according to the <code>*(*(a+i+1)+j)</code> syntactic sugar above).</p>
+<h3 id="your-rpi">Your RPi</h3>
+<p>According to the datasheet, RPi 4 has 32KB L1 Cache for each core and 1MB L2 Cache. By using a <a href="https://github.com/gaomy3832/mem_sys_probe">memory system prober</a>, we can find that the cacheline size is 64B for both L1 and L2 and the L1 cache is 4-way set associative. We will explain this prober in TA session.</p>
+<h2 id="a-large-design-space">A large design space</h2>
+<p>There are many optimizations that can be applied to the naive implementation. They form a large design space altogether.</p>
+<h3 id="loop-permutation">Loop permutation</h3>
+<p>In the naive implementation above, we first loop over <code>k</code> (i.e., the innermost loop level), then <code>n</code>, then <code>m</code>. We may use <code>mnk</code> to denote this pattern.</p>
+<p>According to the background, in the innermost loop of <code>k</code> (iterating <code>l</code>), after <code>Y[l][j]</code> is accessed, <code>Y[l+1][j]</code> is unlikely cached and its access would be slow. How about changing the loop order and looping over <code>n</code> (namely increment <code>j</code>) first? This is more cache-friendly for <code>Y</code>. But now we have to access different <code>Z[i][j]</code> in the innermost loop instead of reusing the same element.</p>
+<p>This is one example of loop permutation, i.e., we transform from <code>mnk</code> to <code>mkn</code>. But we do not know whether the performance would be better or not; it depends on the matrix size, the matrix dimension, the cacheline size, the replacement policy, and more factors. The performance can hardly be analyzed precisely. The best way to evaluate each permutation is to run experiments.</p>
+<h3 id="transpose-ie-array-format">Transpose, i.e., array format</h3>
+<p>In the naive implementation, we can find that the access patterns to <code>X</code> and <code>Y</code> are different: <code>X</code> loops over its row first while <code>Y</code> loops over its column first. This is not cache friendly.</p>
+<p>To resolve this, we can transpose <code>Y</code>. Namely instead of <code>Y[l][j]</code>, we can use <code>YP[j][l]</code> (Y Prime), which is more cache friendly if you loop over <code>k</code> first.</p>
+<p>Note, doing a transpose has a cost. When you are loading the matrix, you have to manually transpose the input; also, when you are doing consecutive matrix multiplications (e.g., you have calculated <code>Z</code> and want to use <code>ZP</code> as the new <code>YP</code> for the next matrix multiplication), you also have to manually transpose it.</p>
+<p>In this lab, we have provided a <code>load</code> function for you to load the matrix into <code>YP</code> without counting them in the final computation time. But in later labs, you have to do consecutive matrix multiplication. So you should give a thought on how to choose between these array formats.</p>
+<h3 id="blocking">Blocking</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">0</span>; l != k; l++)
+</div></code></pre>
+<p>Suppose you loop over <code>k</code> first but <code>k</code> is very large, e.g. 1M. Then you may have poor performance due to loss of locality.</p>
+<p>A technique is to divide <code>k</code> into blocks. For example, with a hyper-parameter block size <code>b</code>, we can transform the above loop into the following form</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> lo = <span class="hljs-number">0</span>; lo != k / b; lo++)
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> li = <span class="hljs-number">0</span>; li != b; li++)
+</div></code></pre>
+<p>The key part is that we should do so on other axes like <code>m</code> and <code>n</code>, and then perform loop permutation on all these loops. Namely we should arrange the loops over one block into the inner part.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> lo = <span class="hljs-number">0</span>; lo != k / b1; lo++)
+  <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> io = <span class="hljs-number">0</span>; io != m / b2; io++)
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> li = <span class="hljs-number">0</span>; li != b1; li++)
+      <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> ii = <span class="hljs-number">0</span>; ii != b2; ii++)
+</div></code></pre>
+<p>You should choose your hyper-parameters carefully based on your limited cache (refer to the background section)! You can also search on this hyper-parameter.</p>
+<h3 id="loop-unrolling">Loop unrolling</h3>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">0</span>; l != k; l++) {
+  <span class="hljs-comment">// payload</span>
+  Z[i][j] += X[i][l] * Y[l][j];
+}
+</div></code></pre>
+<p>Each time after the execution of the payload, <code>l != k</code> is checked by the CPU, namely we have a conditional branch instruction. Loop unrolling by a factor of 2 in this example can eliminate 1 conditional jump instruction out of two loops.</p>
+<pre class="hljs"><code><div><span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> l = <span class="hljs-number">0</span>; l != k; l += <span class="hljs-number">2</span>) {
+  Z[i][j] += X[i][l] * Y[l][j];
+  Z[i][j] += X[i][l + <span class="hljs-number">1</span>] * Y[l + <span class="hljs-number">1</span>][j];
+}
+</div></code></pre>
+<p>However, branch instructions can be just a minor part of the whole execution. According to Amdahl's law, it may not be worth it to do so many manual loop unrolling.</p>
+<h3 id="simd">SIMD</h3>
+<p>Since loop unrolling is such a common pattern in many workloads, instead of using multiple instructions, modern CPUs have offered us SIMD instructions. This not only reduces the code size, but also gives the potential of massive speedup because there can be dedicated accelerator units inside the CPU.</p>
+<!-- add some more SIMD introduction -->
+<p>SIMD (<strong>S</strong>ingle <strong>I</strong>nstruction <strong>M</strong>ultiple <strong>D</strong>ata) is a data level parallelism technique, it performs the same instruction on more than one data units simultaneously. ARM, i.e., the ISA of your RPi, has offered us a C language extension <a href="https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/ARM-NEON-Intrinsics.html">(NEON)</a> to write SIMD functions. Briefly speaking, NEON provides more long registers (e.g., 64bits D-type register or 128bits Q-type register) with new function interfaces for us to execute the same instruction on multiple data units (e.g., 16 and 32bit integers). In another word, NEON organize multiple same-type data units as a vector which stores in the NEON register.</p>
+<p>In NEON, such vector data types are named as <code>&lt;type&gt;&lt;size&gt;x&lt;number_of_lanes&gt;_t</code>. For example, <code>uint8x8_t</code> is a vector with eight <code>uint8</code> integers. More vector types can be seen in <a href="https://developer.arm.com/documentation/den0018/a/NEON-Intrinsics/Vector-data-types-for-NEON-intrinsics">page</a>.</p>
+<p>Then we can execute instruction on a vector of data units simultaneously. For example, we can execute multiplication on eight 8bit <code>uint8</code> integers through <code>uint8x8_t vmul_u8(uint8x8_t a, uint8x8_t b);</code>, for more examples, see <a href="https://developer.arm.com/documentation/den0018/a/NEON-Intrinsics/Using-NEON-intrinsics">page</a>.</p>
+<p>With SIMD, we can implement our task more efficiently, as we can now evaluate multiple independent multiplications at the same time.</p>
+<p>Actually, ARM also provides a compile option <code>-O3</code> that can automatically optimize your code with SIMD even if you didn't use the above SIMD instructions. For details, see <a href="https://developer.arm.com/documentation/den0013/d/Optimizing-Code-to-Run-on-ARM-Processors/Compiler-optimizations/GCC-optimization-options">page</a>.</p>
+<!-- [ARM also provides](https://developer.arm.com/documentation/den0013/d/Optimizing-Code-to-Run-on-ARM-rocessors/Compiler-optimizations/GCC-optimization-options) that when you use `-O3`, the compiler would try to automatically optimize the code using SIMD. -->
+<!-- Actually, ARM also  -->
+<!-- For example, a 64bit NEON register can be viewed as storing eight 8bit unsigned integers to a single register ```uint_8x8_t x``` through ```uint_8x8_t x = vld1_u8(X8[i])```; or four 16bit unsigned integers through ```unit_16x4_t x = vld1_u8(X16[i])```, where ```X8``` or ```X16``` is a matrix of ```uint8_t``` or ```uint16_t```. Then we can simultaneously execute one single multiplication on the 8 or 4 integers through ```vmul_u8(uint_8x8_t x, uint_8x8_t x)``` or ```vmul_u16(unit_16x4_t x, unit_16x4_t x)```.  -->
+<!-- such a SIMD  -->
+<!-- feature called NEON.  -->
+<!-- You may refer to [the manual of gcc](https://gcc.gnu.org/onlinedocs/gcc-4.6.4/gcc/ARM-NEON-Intrinsics.html) and [examples of ARM](https://developer.arm.com/documentation/102467/0100/Matrix-multiplication-example).  -->
+<h2 id="tasks">Tasks</h2>
+<h3 id="code-structure">Code structure</h3>
+<p>In <code>src/</code> lies the code for the <code>main</code> program. This program mainly consists of three parts: <code>load</code>, <code>compute</code> and <code>compare</code>, and accepts four arguments: <code>filename</code>, <code>LOAD_SELECT</code>, <code>COMPUTE_SELECT</code> and <code>COMPARE_SELECT</code>. <code>filename</code> is the file for input matrices and the reference matrix; <code>LOAD_SELECT</code>, <code>COMPUTE_SELECT</code> and <code>COMPARE_SELECT</code> are enums defined in <code>common.h</code>, and different enumerators correspond to different function implementations.</p>
+<p>The <code>load</code> part loads matrices <code>X</code>, <code>Y</code> and <code>Z</code> from the <code>filename</code> argument. According to the argument <code>LOAD_SELECT</code>, the function loads them into different formats. For example, if you have selected <code>LOAD_ROW_MAJOR</code> (defined in <code>common.h</code>), these matrices would be loaded into <code>X[M][K]</code>, <code>Y[K][N]</code> and <code>R[M][N]</code> respectively (defined in <code>common.c</code>). We have pre-defined some enumerators and variables (e.g. <code>X</code>, <code>X32</code>, <code>X16</code> and <code>Xp</code>) in <code>common.h</code> for you, and for some of these enumerators we have implemented the logic in <code>load.c</code> for your convenience. If you have the need on your <code>compute</code> kernel, you can implement your own <code>load</code>.</p>
+<p>Then comes your part: <code>compute</code>. In this part, you should implement different <code>compute</code> (different kernels) according to the tasks described below. You should use the <code>X</code> and <code>Y</code> according to your selected load function, and store the result in <code>Z</code> (i.e. <code>Z[M][N]</code>, <code>ZP[N][M]</code> or <code>Zp</code>). We have provided some mandatory enumerators for you, but feel free to add your own enumerators as you are optimizing your kernel.</p>
+<p>The <code>compare</code> part compares your computation result <code>Z</code> to the reference matrix <code>R</code>. We have defined some enumerators and compare logic for your convenience, but you can implement your own <code>compare</code> based on your <code>compute</code>.</p>
+<p>Generally speaking, you can modify nearly everything as long as you keep the functionality, namely you can not modify the timer to make it malfunction, or you can not just copy <code>R</code> to <code>Z</code> in your own <code>load</code>, or include <code>arm_neon.h</code> when SIMD is not enabled.</p>
+<p>Also, you should not use third party libraries or directly copy codes from them.</p>
+<h3 id="makefile">Makefile</h3>
+<p>The entire workflow is supported by Makefile. You can just invoke <code>make target</code> to automate your compilation and execution.</p>
+<p>Basically, the syntax for Makefile is</p>
+<pre class="hljs"><code><div><span class="hljs-section">target: dependency</span>
+    command
+    command
+    command
+</div></code></pre>
+<p>And you can just invoke <code>make target</code> in your command line to execute all these commands as well as the commands to first satisfy the dependency.</p>
+<p>You may read all the Makefiles we have provided to understand all the convenient helpers we have provided, and you can add your own targets. However, the compilation flags, e.g. <code>-O0</code> for all your submissions must not be changed.</p>
+<h3 id="generating-data">Generating data</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># in utils/</span>
+make prep
+make
+<span class="hljs-comment"># this may take a long time</span>
+<span class="hljs-comment"># also, you should have at least 200M spare spaces for these data</span>
+make txt
+</div></code></pre>
+<p>Then you will find <code>test.txt</code> (example) and other txt files (test cases) in <code>bin/</code></p>
+<p><code>test.txt</code> contains just 4x4 matrices and it is convenient for you to test your code.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># in src/</span>
+$ make mnk
+Elapsed <span class="hljs-keyword">time</span> (Human readable): 0s 0ms 101us 57ns
+Elapsed <span class="hljs-keyword">time</span> (Machine readable): 10157
+</div></code></pre>
+<p>You can run the above command and the <code>main</code> program will read <code>test.txt</code>.</p>
+<p>In the meantime, if you want to run against our test cases, you can try</p>
+<pre class="hljs"><code><div>$ make mnk I=1
+$ make mnk I=2
+$ make mnk I=3
+<span class="hljs-comment"># and more...</span>
+</div></code></pre>
+<h3 id="task-1-loop-orders-2pt">Task 1. Loop orders (2pt)</h3>
+<p>This task tries to show you the effect of loop permutation.</p>
+<p>We have implemented <code>compute_row_major_mnk</code> in <code>compute.c</code> and defined a baseline target called <code>mnk</code> in <code>MakefileTasks</code> for you.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># in src/</span>
+<span class="hljs-comment"># run the example</span>
+$ make mnk
+<span class="hljs-comment"># run test case 1</span>
+$ make mnk I=1
+<span class="hljs-comment"># run test case 2</span>
+$ make mnk I=2
+</div></code></pre>
+<p>After generating data, you can run the above command to try this code.</p>
+<p>Then you should implement all other remaining permutations of <code>m</code>, <code>n</code> and <code>k</code> in <code>compute.c</code>.</p>
+<p>After implementing one permutation, suppose it is <code>mkn</code>, you can try <code>make mkn</code> to test your code.</p>
+<p>After implementing all these permutations, you should run the following command to collect the data for all 8 inputs and draw a speedup figure similar to the following one.</p>
+<pre class="hljs"><code><div>$ make tasks1 I=1
+$ make tasks1 I=2
+$ make tasks1 I=3
+$ make tasks1 I=4
+$ <span class="hljs-comment"># and more...</span>
+</div></code></pre>
+<p><img src="file:///home/StellarDrift/lab1-main/doc/img/lab1-task1.png" alt=""></p>
+<p>We have provided a plot script in <code>utils/plot.py</code>, to use this, you should <code>pip install easypyplot</code>. However, it is not required to use this script. If you are not familiar with python/pip, you can just use Excel.</p>
+<p>You can try to analyze why there is such a difference across one data group and multiple data groups. This is not required in your report.</p>
+<p><strong>[2023.03.12 15:00 UPDATE]</strong></p>
+<p>We provide you a neat method to plot your experiment results. Follow the instructions below.
+First, change your directory to main directory of this repo, i.e. some_directory/lab1, by using the command : <code>cd some_directory/lab1</code>.</p>
+<p>Then, you can run <code>make log</code>. This will run the experiments of all three tasks(i.e. tasks1, tasks2, tasks3) again, and record the results on <code>tasks{1,2,3}_run.log</code> respectively.</p>
+<p>Finally, run <code>make plot</code>. This will run the plot.py script where the python script will load the experiment data from our <code>tasks{1,2,3}_run.log</code> and plot the bar chart using the experiment data.</p>
+<p>Please note that only tasks{1,2,3}_run.log files are ready, you can run <code>make plot</code> successfully. Else, you may need to review and modify the <code>plot.py</code> slightly.</p>
+<h3 id="task-2-common-techniques-2pt2pt">Task 2. Common techniques (2pt+2pt)</h3>
+<p>This task consists of two parts.</p>
+<p>The first part is similar to task 1. You should implement some techniques specified by us, collect the data and draw a speedup figure.</p>
+<p>The techniques specified by us are <code>COMPUTE_Y_TRANSPOSE_MNK</code>, <code>COMPUTE_ROW_MAJOR_MNKKMN_B32</code> and <code>COMPUTE_ROW_MAJOR_MNK_LU2</code>.</p>
+<ul>
+<li><code>COMPUTE_Y_TRANSPOSE_MNK</code>: Transpose <code>Y</code> when doing <code>load</code>. We have defined <code>t_mnk</code> target in <code>MakefileTasks</code> for you.</li>
+<li><code>COMPUTE_ROW_MAJOR_MNKKMN_B32</code>: Block the loop using a block size of 32. We have defined <code>mnkkmn_b32</code> target for you.</li>
+<li><code>COMPUTE_ROW_MAJOR_MNK_LU2</code>: Unroll the loop by a factor of 2 (namely using <code>l+=2</code>). We have defined <code>mnk_lu2</code> target for you.</li>
+</ul>
+<p>In the speedup figure, you should compare these three cases to the baseline <code>mnk</code>.</p>
+<p>You can try to analyze why there is such a difference across one data group and multiple data groups. This is not required in your report.</p>
+<p>The second part is to optimize as much as you can. You can try different parameters when applying blocking/permutation/unrolling techniques. You should achieve a speedup of at least 5X against the baseline <code>mnk</code>. You must not use SIMD instructions in this task though.</p>
+<p>A small side note. When you are trying different parameters, you can write multiple kernels instead of constantly modifying one kernel. You can modify <code>MakefileTasks</code> and add, for example, <code>mnkkmn_b4</code>, <code>mnkkmn_b16</code>, <code>mnkkmn_b64_lu4</code>. Then you can add them in the target <code>task2</code>, such that you can easily benchmark against one test using one command <code>make task2</code>.</p>
+<p>You should submit your code and we will test against all these test cases (no extra/hidden test cases). You should choose your final implementation by changing the line <code>grade2: t_mnk</code> in <code>MakefileTasks</code> to your own implementation, e.g. <code>grade2: fancy_kernel_after_ten_hours_of_tuning</code>.</p>
+<p>We will grade your submission with a linear scoring function. Namely, if you achieve <code>N</code>X speedup, you will get <code>min(max(N-1, 0), 4)/2</code> pts.</p>
+<h3 id="task-3-with-simd-2pt2pt">Task 3. With SIMD (2pt+2pt)</h3>
+<p>This task consists of two parts.</p>
+<p>The first part is similar to the second task. You should 1) use the SIMD instructions provided by NEON and 2) use the ARM automated compiling option <code>-O3</code> to improve the performance of your code. This time the required minimum speedup for the &quot;your <code>simd</code> implementation&quot; case is 10X against the baseline <code>mnk</code>.</p>
+<!-- You can now use SIMD instructions (through NEON) and compare the performance with the ARM automatic compiled one. This time the required minimum speedup is 10X against the baseline `mnk`. You should change the line `grade3: simd` to your own implementation (You should not submit the one with `-O3`!). The grading policy is again linear. -->
+<!-- The second part again is drawing a speedup figure. -->
+<!-- [ARM said](https://developer.arm.com/documentation/den0013/d/Optimizing-Code-to-Run-on-ARM-Processors/Compiler-optimizations/GCC-optimization-options) that when you use `-O3`, the compiler would try to automatically optimize the code using SIMD. We will see how this affects performance. -->
+<p>The second part again is drawing a speedup figure.
+You should draw a figure containing all four cases: 1) <code>mnk</code>, 2) <code>mnk</code> with <code>-O3</code>, 3) your <code>simd</code> implementation, and 4) your <code>simd</code> implementation with <code>-O3</code>. If the speedup is too large, you can use log scale in y-axis. This figure does not have the 10X requirement.</p>
+<h2 id="git-optional-in-this-lab-but-highly-recommended">Git (optional in this lab but highly recommended)</h2>
+<p>Instead of sending the code to your teammate again and again using IMs like Wechat and QQ, you should use a version control system. You can use <code>git</code> as the version control tool and <a href="https://git.tsinghua.edu.cn">https://git.tsinghua.edu.cn</a> as your platform to collaborate with your teammate.</p>
+<p>First you need to generate a SSH key on your raspberry pi</p>
+<pre class="hljs"><code><div>zhenghr@sysintro-example:~ $ ssh-keygen -t ed25519
+Generating public/private ed25519 key pair.
+Enter file <span class="hljs-keyword">in</span> <span class="hljs-built_in">which</span> to save the key (/home/zhenghr/.ssh/id_ed25519): 
+Created directory <span class="hljs-string">&#x27;/home/zhenghr/.ssh&#x27;</span>.
+Enter passphrase (empty <span class="hljs-keyword">for</span> no passphrase): 
+Enter same passphrase again: 
+Your identification has been saved <span class="hljs-keyword">in</span> /home/zhenghr/.ssh/id_ed25519
+Your public key has been saved <span class="hljs-keyword">in</span> /home/zhenghr/.ssh/id_ed25519.pub
+zhenghr@sysintro-example:~ $ <span class="hljs-built_in">cat</span> ~/.ssh/id_ed25519.pub
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKaPFMjRGCYxCMutkRdYBBn+O4mwJRgPaOdudcXe8XRm zhenghr@sysintro-example
+</div></code></pre>
+<p>Then you log into <a href="https://git.tsinghua.edu.cn">https://git.tsinghua.edu.cn</a> and open <a href="https://git.tsinghua.edu.cn/-/profile/keys">https://git.tsinghua.edu.cn/-/profile/keys</a>, then you paste the <code>ssh-ed25519</code> line above to add a key.</p>
+<p>Next you should open <a href="https://git.tsinghua.edu.cn/projects/new#blank_project">https://git.tsinghua.edu.cn/projects/new#blank_project</a> to create a PRIVATE project named <code>lab1</code> (not initialized with README). Then you will see a <code>Command line instructions</code> page. By now you should have copied the materials for this lab to your RPi. You should change your working directory to that folder. On your Raspberry Pi, first you need to finish your Git global setup, then follow the instructions in <code>Push an existing Git repository</code> section to push your local code to git.tsinghua. You may see the code in <a href="https://git.tsinghua.edu.cn/zhenghr18/lab1">https://git.tsinghua.edu.cn/zhenghr18/lab1</a> (change it to your username).</p>
+<p>Then in <a href="https://git.tsinghua.edu.cn/zhenghr18/lab1/-/project_members">https://git.tsinghua.edu.cn/zhenghr18/lab1/-/project_members</a>, you should invite your teammate. After your teammate accepts the invitation on his/her email, you can now both see the contents in <a href="https://git.tsinghua.edu.cn/zhenghr18/lab1">https://git.tsinghua.edu.cn/zhenghr18/lab1</a>.</p>
+<p>Now you can write your code. After a relatively complete modification (e.g. you have implemented one compute kernel). you can <code>git add</code>, then <code>git commit</code> to save your modification to a commitment; after <code>git push</code>, your local modifications are now synced to git.tsinghua. Your teammate would need to first do <code>git clone</code> (only once) to set up his/her local version, and then use <code>git pull</code> to see your newest code changes.</p>
+<p>Detailed instructions about <code>git</code> will be introduced in Week 5 lecture about practical skills.</p>
+<h3 id="submission">Submission</h3>
+<p>You should submit your source code, and also a report containing the three figures required above, to <a href="https://learn.tsinghua.edu.cn">https://learn.tsinghua.edu.cn</a>. You should submit one file named <code>&lt;student1_id&gt;_&lt;student2_id&gt;.tar.gz</code> (e.g., <code>2021000000_2021000111.tar.gz</code>) with the following structure. You should strictly follow this structure as we will run automated evaluation.</p>
+<pre class="hljs"><code><div>2021000000_2021000111.tar.gz
+├── report.pdf
+└── src
+    ├── common.c
+    ├── common.h
+    ├── compare.c
+    ├── compare.h
+    ├── compute.c
+    ├── compute.h
+    ├── load.c
+    ├── load.h
+    ├── main.c
+    ├── Makefile
+    └── MakefileTasks
+</div></code></pre>
+<p>You can produce such a submission using the following command.</p>
+<pre class="hljs"><code><div><span class="hljs-comment"># in the root directory of lab1</span>
+<span class="hljs-comment"># suppose you have copied your report to this dir</span>
+$ tar czf ../2021000000_2021000111.tar.gz report.pdf src
+</div></code></pre>
+<p>And you can use the following command to inspect its contents.</p>
+<pre class="hljs"><code><div>$ tar tf ../2021000000_2021000111.tar.gz
+report.pdf
+src/
+src/common.h
+src/compare.c
+src/common.c
+src/compare.h
+src/Makefile
+src/main.c
+src/compute.h
+src/MakefileTasks
+src/load.h
+src/load.c
+src/compute.c
+</div></code></pre>
+<p>When we are evaluating the speedup of your implementation, only the computation time of your kernel is recorded. Since for each test case there is a speedup, we will calculate the final speedup using geometric mean.</p>
+
+</body>
+</html>
