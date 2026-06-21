@@ -71,9 +71,9 @@ tasks2:
 	@$(MAKE) mnkkmn_b32
 	@$(MAKE) mnk_lu2
 	@$(MAKE) b16
-    @$(MAKE) mknmkn_b32_lu8
-    @$(MAKE) mknmkn_b32_Bj64_lu8
-    @$(MAKE) mknmkn_b32_Bj128_lu8
+	@$(MAKE) mknmkn_b32_lu8
+	@$(MAKE) mknmkn_b32_Bj64_lu8
+	@$(MAKE) mknmkn_b32_Bj128_lu8
 
 # task 3
 
