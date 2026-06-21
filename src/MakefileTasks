@@ -48,6 +48,20 @@ mnkkmn_b32: $(M)
 mnk_lu2: $(M)
 	@$(M) $(IN) 1 121 1
 
+.PHONY: b16 mknmkn_b32_lu8 mknmkn_b32_Bj64_lu8 mknmkn_b32_Bj128_lu8
+
+b16: $(M)
+	@$(M) $(IN) 1 131 1
+
+mknmkn_b32_lu8: $(M)
+	@$(M) $(IN) 1 141 1
+
+mknmkn_b32_Bj64_lu8: $(M)
+	@$(M) $(IN) 1 142 1
+
+mknmkn_b32_Bj128_lu8: $(M)
+	@$(M) $(IN) 1 143 1
+
 grade2: t_mnk
 
 tasks2:
@@ -56,6 +70,10 @@ tasks2:
 	@$(MAKE) t_mnk
 	@$(MAKE) mnkkmn_b32
 	@$(MAKE) mnk_lu2
+	@$(MAKE) b16
+    @$(MAKE) mknmkn_b32_lu8
+    @$(MAKE) mknmkn_b32_Bj64_lu8
+    @$(MAKE) mknmkn_b32_Bj128_lu8
 
 # task 3
 
